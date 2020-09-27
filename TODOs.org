@@ -1,0 +1,39 @@
+
+* TODO Generate required ZBus proxies
+  To create a proxy use =busctl= to obtain the required =XML=:
+
+  #+begin_src sh
+    busctl --system --xml-interface introspect \
+      org.freedesktop.UPower \
+      /org/freedesktop/UPower > org.freedesktop.UPower.xml
+  #+end_src
+  
+  Convert the obtained =XML= into =rust= code:
+
+  1. Compile the required project [[git@gitlab.freedesktop.org:zeenix/zbus.git][=zbus_xmlgen=]]:
+
+  #+begin_src sh
+    git clone https://gitlab.freedesktop.org/zeenix/zbus.git
+    cd zbus/zbus_xmlgen
+    cargo install --path .
+  #+end_src
+
+  Get information about a specific UPower device:
+
+  #+begin_src sh
+    busctl --system --xml-interface introspect \
+           org.freedesktop.UPower \
+           /org/freedesktop/UPower/devices/mouse_hidpp_battery_0 > org.freedesktop.UPower.Device.xml
+
+    # Use gdbus as an alternative (better docs: https://developer.gnome.org/gio//2.38/gdbus.html)
+    gdbus introspect --system \
+          --dest=org.freedesktop.UPower \
+          --object-path='/org/freedesktop/UPower/devices/mouse_hidpp_battery_0'
+  #+end_src
+
+* GTK integration
+  
+  To use =libappindicator= must install =clang= and =libappindicator-gtk3-devel= (Fedora).
+
+  Find name for the icons in the theme:
+  https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html

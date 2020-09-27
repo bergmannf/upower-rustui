@@ -1,0 +1,3 @@
+[submodule "upstream_zbus"]
+	path = upstream_zbus
+	url = https://gitlab.freedesktop.org/zeenix/zbus.git

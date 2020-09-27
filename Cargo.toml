@@ -1,0 +1,14 @@
+[package]
+name = "rust-battery"
+version = "0.1.0"
+authors = ["Florian Bergmann <Bergmann.F@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+gtk = "0.9.1"
+libappindicator = "0.5.2"
+zbus = "1.2.0"
+zvariant = "2.2.0"
